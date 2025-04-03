@@ -13,5 +13,6 @@ namespace SchoolApi.Date
         public DbSet<Student> Students { get; set; }
         public DbSet<subjects> Subjects { get; set; }
         public DbSet<Teachers> Teachers {get;set;}
+        
     }
 }

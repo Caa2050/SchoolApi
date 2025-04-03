@@ -12,10 +12,6 @@ namespace SchoolApi.Models
         public ICollection<Student> Students{get;set;} = new List<Student>();
         public ICollection<Teachers> Teachers{get;set;} = new List<Teachers>();
 
-        public subjects(){}
-        public subjects(int id, string name){
-            Id = id;
-            Name = name;
-        }
+       
     }
 }

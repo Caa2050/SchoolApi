@@ -14,14 +14,7 @@ namespace SchoolApi.Models
         public string Graduation{get;set;}
         public subjects Subject{get;set;}
 
-        public Teachers(){}
-        public Teachers(int id,string name,DateTime birthDate,string email,string graduation,subjects subject){
-            Id = id;
-            Name = name;
-            BirthDate = birthDate;
-            Email = email;
-            Graduation = graduation;
-            Subject = subject;
-        }
+        
+        
     }
 }
