@@ -21,5 +21,7 @@ namespace SchoolApi.Controllers
             List<Student> students = await _service.GetStudentsAsync();
             return students;
         }
+
+        
     }
 }

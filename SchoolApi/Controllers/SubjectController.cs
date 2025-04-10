@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SchoolApi.Models;
 using SchoolApi.Services;
+using SchoolApi.Dtos;
 namespace SchoolApi.Controllers
 {
     [ApiController]
@@ -21,9 +22,15 @@ namespace SchoolApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<subjects>>> GetSubjects(){
-            List<subjects> subjects = await _service.GetSubjectsAsync();
+        public async Task<ActionResult<List<SubjectsDto>>> GetSubjects(){
+            List<SubjectsDto> subjects = await _service.GetSubjectsAsync();
             return subjects;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(SubjectsDto obj){
+            await _service.InsertAsync(obj);
+            return Ok();
         }
     }
 }

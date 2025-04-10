@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-namespace SchoolApi.Models
+using SchoolApi.Models;
+namespace SchoolApi.Dtos
 {
-    public class Teachers 
+    public class TeachersDto
     {
         public int Id{get;set;}
         public string Name{get;set;}
@@ -13,9 +13,5 @@ namespace SchoolApi.Models
         public string Email{get;set;}
         public string Graduation{get;set;}
         public int SubjectId{get;set;}
-        public subjects Subject{get;set;}
-
-        
-        
     }
 }

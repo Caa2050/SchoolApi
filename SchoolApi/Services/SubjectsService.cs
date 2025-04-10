@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using SchoolApi.Models;
 using SchoolApi.Date;
 using Microsoft.EntityFrameworkCore;
+using SchoolApi.Dtos;
+
 namespace SchoolApi.Services
 {
     public class SubjectsService
@@ -14,9 +16,25 @@ namespace SchoolApi.Services
             _context = context;
         }
 
-        public async Task<List<subjects>> GetSubjectsAsync(){
-            List<subjects> subjects =  await _context.Subjects.ToListAsync();
-            return subjects;
+        public async Task<List<SubjectsDto>> GetSubjectsAsync(){
+            List<subjects> subject =  await _context.Subjects.ToListAsync();
+            List<SubjectsDto> subjectsDto = new List<SubjectsDto>();
+            foreach (subjects item in subject)
+            {
+                subjectsDto.Add(ConvertToDto(item));
+            }
+            return subjectsDto;
+        }
+        public async Task InsertAsync(SubjectsDto obj){
+            subjects subject = ConvertoToNormal(obj);
+            _context.Subjects.Add(subject);
+            await _context.SaveChangesAsync();
+        }
+        public subjects ConvertoToNormal(SubjectsDto obj){
+            return new subjects {Name = obj.Name};
+        }
+        public SubjectsDto ConvertToDto(subjects obj){
+            return new SubjectsDto{Id =obj.Id,Name = obj.Name};
         }
     }
 }
