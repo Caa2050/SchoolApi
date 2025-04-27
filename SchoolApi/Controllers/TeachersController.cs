@@ -19,8 +19,8 @@ namespace SchoolApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<TeachersDto>>> GetTeachers(){
-            List<TeachersDto> teachers = await _service.GetTeachersAsync();
+        public async Task<ActionResult<List<Teachers>>> GetTeachers(){
+            List<Teachers> teachers = await _service.GetTeachersAsync();
             return teachers;
         }
 

@@ -15,14 +15,9 @@ namespace SchoolApi.Services
         public TeacherService(DataContext context){
             _context = context;
         }
-        public async Task<List<TeachersDto>> GetTeachersAsync(){
-            List<Teachers> teachers = await _context.Teachers.ToListAsync();
-            List<TeachersDto> teachersDto = new List<TeachersDto>();
-            foreach (Teachers item in teachers)
-            {
-                teachersDto.Add(ConvertToDto(item));
-            }
-            return teachersDto;
+        public async Task<List<Teachers>> GetTeachersAsync(){
+            var result = from obj in _context.Teachers select obj;
+            return await result.Include(x => x.Subject).ToListAsync();
         }
         public async Task InsertAsync(TeachersDto teacherDto){
             Teachers teacher = ConvertToNormal(teacherDto);
@@ -50,8 +45,6 @@ namespace SchoolApi.Services
         public Teachers ConvertToNormal(TeachersDto obj){
            return  new Teachers{Id = obj.Id, Name = obj.Name, BirthDate = obj.BirthDate, Email = obj.Email, Graduation = obj.Graduation, SubjectId = obj.SubjectId};
         }
-        public TeachersDto ConvertToDto(Teachers obj){
-           return  new TeachersDto{Id = obj.Id, Name = obj.Name, BirthDate = obj.BirthDate, Email = obj.Email, Graduation = obj.Graduation, SubjectId = obj.SubjectId};
-        }
+       
     }
 }

@@ -16,6 +16,7 @@ namespace SchoolApi.Services
             _context = context;
         }
 
+        
         public async Task<List<SubjectsDto>> GetSubjectsAsync(){
             List<subjects> subject =  await _context.Subjects.ToListAsync();
             List<SubjectsDto> subjectsDto = new List<SubjectsDto>();
